@@ -44,7 +44,9 @@ const FEED_QUERY = gql`
             </div>
         </div>
     </div>
+
 </div>
+
 );
 };
 

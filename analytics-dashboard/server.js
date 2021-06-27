@@ -11,8 +11,12 @@ var schema = buildSchema(`
     visit(id: ID): Visits  
 
     keyissues:[KeyIssues]
-    keyissue(id: ID):KeyIssues     
+    keyissue(id: ID):KeyIssues
+    
+    staff:[Staff]   
   }
+
+
   type Visits {
     id: ID
     location: String    
@@ -23,10 +27,24 @@ var schema = buildSchema(`
     issue: String  
     location: [Visits] 
   }
+
+  type Staff {
+    id: ID
+    staff_name: String
+    efficiency_d1: String 
+    efficiency_d2: String 
+    nps_d1: String 
+    nps_d2: String
+    efficiency: String
+    reported_Issues: String         
+    location: [Visits] 
+  }
+
 `);
 
 const VISITS = new Map()
 const KEYISSUES = new Map()
+const STAFF = new Map()
 
 class Visits {
   constructor (data) { Object.assign(this, data) }
@@ -42,6 +60,14 @@ class KeyIssues {
   }
 }
 
+class Staff {
+  constructor (data) { Object.assign(this, data) }
+    get location() {
+    return [...VISITS.values()].filter(visit => visit.id === this.visit)
+  }
+}
+
+
 const root = {
   visits: () => VISITS.values(),
   visit: ({ id }) => VISITS.get(id),
@@ -49,6 +75,8 @@ const root = {
   keyissues: () => KEYISSUES.values(),
   keyissue: ({ id }) => KEYISSUES.get(id),
 
+  staff: () => STAFF.values()
+ 
 }
 
 const initializeData = () => {
@@ -73,6 +101,19 @@ const fakeKeyIssues = [
   { id: '6', issue: 'Careless Waste Disposal' , visit :'7'},
 ]
 fakeKeyIssues.forEach(keyissues => KEYISSUES.set(keyissues.id, new KeyIssues(keyissues)))
+
+
+//fake staff data
+const fakeStaff = [
+  { id: '1', staff_name: 'Mercy Mukoya' , efficiency_d1 :'1,3', efficiency_d2:'+0,2',nps_d1:'1,2',nps_d2:'+0,3', efficiency:'96',reported_Issues:'3',visit :'41'},
+  { id: '2', staff_name: 'Kennedy Ayako' , efficiency_d1 :'1,8', efficiency_d2:'+0,4',nps_d1:'1,8',nps_d2:'+0,2', efficiency:'92',reported_Issues:'6', visit :'7'},
+  { id: '3', staff_name: 'Stephanie Tomsett' , efficiency_d1 :'2,7', efficiency_d2:'2,5',nps_d1:'2,0',nps_d2:'1,8', efficiency:'58',reported_Issues:'1', visit :'38'},
+  { id: '4', staff_name: 'Faith Kityo' , efficiency_d1 :'2,8', efficiency_d2:'-0,5',nps_d1:'2,5',nps_d2:'-2,1', efficiency:'74',reported_Issues:'8', visit :'26'},
+ 
+]
+fakeStaff.forEach(staff => STAFF.set(staff.id, new Staff(staff)))
+
+
 }
 
 initializeData()

@@ -40,3 +40,22 @@
   float: left;
   margin-left: 1%;
 }
+.td_style{
+  text-align:left;
+  font-weight:900;
+}
+.card_style{
+  text-align:left;
+  font-weight:900;
+  width:100% !important;
+}
+
+.bg-warning {
+  background-color: #1f1003 !important;
+  width: 100% !important;
+  text-align: left !important;
+  color: white !important;
+}
+.visits_section{
+  margin-left:1% !important;
+}
