@@ -51,11 +51,14 @@
 }
 
 .bg-warning {
-  background-color: #1f1003 !important;
+  background-color: #4c4f7c !important;
   width: 100% !important;
   text-align: left !important;
   color: white !important;
 }
 .visits_section{
   margin-left:1% !important;
+}
+.chart_container{
+  height:300px;
 }

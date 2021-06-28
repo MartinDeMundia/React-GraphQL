@@ -1,6 +1,6 @@
-import { useQuery, gql } from '@apollo/client';
+//import { useQuery, gql } from '@apollo/client';
 import React from 'react';
-
+/*
 const FEED_QUERY = gql`
   {
     visits {
@@ -8,9 +8,9 @@ const FEED_QUERY = gql`
       location
     }
   }
-`;
+`;*/
  const MonitoringPeriod = () => {
- const { data } = useQuery(FEED_QUERY);
+ //const { data } = useQuery(FEED_QUERY);
 
  return (   
     <div class="row">

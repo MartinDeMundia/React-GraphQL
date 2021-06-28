@@ -14,7 +14,7 @@ const FEED_QUERY = gql`
  return (   
   <div class="col-3">  
   <div class="card">
-      <div class="card-header d-flex flex-column align-items-start pb-0" class='visits_section'>
+      <div class="card-header d-flex flex-column align-items-start pb-0 visits_section">
       <h2 class="text-bold-700 mt-1">Visits</h2>          
       {data && (
         <span>
